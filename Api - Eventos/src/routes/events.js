@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router(); // Manejador de rutas de express
 const eventoSchema = require("../models/events");
 
-// Nuevo evento
+// Nuevo evento - POST
 router.post("/events", (req, res) => {
     const evento = new eventoSchema(req.body);
     evento
@@ -12,3 +12,10 @@ router.post("/events", (req, res) => {
 });
 
 module.exports = router;
+
+//Consultar Datos - GET
+router.get("/events", (req, res) => {
+    eventoSchema.find()
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }));
+});
